@@ -1,11 +1,12 @@
-title: Texture Theme
-author: GitHub User
-email: your-email@domain.com
+title: of Experiment and Result
+author: Oksigenasu
+email: oksigenasu@yahoo.com
 description: > # this means to ignore newlines until "show_exerpts:"
   My development website.  i'll do my best to keep it posted.  About hardware making and software development
 show_excerpts: true # set to true to show excerpts on the homepage
 #baseurl: /texture
-
+exclude: [vendor]
+future: true
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 sass:
@@ -17,7 +18,7 @@ texture:
   tagline: Maker, Hardware and Software Enthusiast
   date_format: "%b %-d, %Y"
   style: black
-  showNav: true
+  showNav: false
   showPicker: true
 
   # generate social links in footer
