@@ -3,8 +3,10 @@ layout: post
 title:  "Welcome, to this site"
 date:   2020-03-30 10:13:36 +000
 ---
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+welcome! with this hub site, i would like to document all my journey with electronics and software development.  some maybe interesting, but mostly just boring stuffs.
 
-why bother with the lorem ipsum? just welcome here and wait for my posts.
+this site using template [texture](https://github.com/thelehhman/texture) that is simple and customable.
+
+i also use this site to familiarize myself with git.
 
 thank you!

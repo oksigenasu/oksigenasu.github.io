@@ -1,6 +1,6 @@
 # texture
 
-A configurable jekyll theme for simply beautiful blogs.
+Should change this readme :p
 
 **Demo**: [thelehhman.com/texture](https://thelehhman.com/texture)
 

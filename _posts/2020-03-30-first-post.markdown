@@ -3,30 +3,41 @@ layout: post
 title:  "First Post"
 description: An example post which shows code rendering.
 date:   2020-03-30 10:15:36 +000
-categories: test Javascript NodeJS
+categories: test CPP code
 ---
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+this was the first post from the template. i will keep this to remind me how to write a post with code rendering.  Maybe i will use it to render arduino or C++ code.
 
-```javascript
-const express = require('express')
-const app = express()
- 
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
- 
-app.listen(3000)
-```
+```cpp
+char StrContains(char *str, char *sfind)
+{
+  char found = 0;
+  char index = 0;
+  char len;
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam qui voluptatem excepturi nemo similique atque sapiente aperiam, dolorum deleniti! Esse quam perferendis temporibus nemo at molestias necessitatibus tenetur cupiditate sapiente. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil et voluptatibus non labore officiis assumenda, distinctio perspiciatis blanditiis nesciunt rerum molestias impedit fugiat nulla qui libero minima quasi! Libero, iure.
+  len = strlen(str);
 
-```scss
-body {
-	font-family: 'Nunito Sans', sans-serif;
-	line-height: 1.5em;
-	margin: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  if (strlen(sfind) > len)
+  {
+    return 0;
+  }
+  while (index < len)
+  {
+    if (str[index] == sfind[found])
+    {
+      found++;
+      if (strlen(sfind) == found)
+      {
+        return 1;
+      }
+    }
+    else
+    {
+      found = 0;
+    }
+    index++;
+  }
+  return 0;
 }
 ```
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam rerum, ratione impedit necessitatibus facere soluta odio repellat asperiores neque! Sunt iusto quia suscipit amet inventore eum, vel molestiae reiciendis alias.
+
+This rendered quite nicely!
