@@ -1,0 +1,60 @@
+I"�<p>Finally its arrived! and without further ado, lets open them.</p>
+
+<p><img src="/assets/img/chargerled.jpeg" alt="cloned LoLin32 with red charging led" /></p>
+
+<p>Since lolin32 was retired, i knew the board that i got was a clone.  The downside from a clone is that sometimes its charging IC was bad and need replacement.  You can spot it when the charging led is blinking even though there were no battery attached. The prochedure to replace the IC can be followed  in <a href="https://www.youtube.com/watch?v=a9f9vHjQSfQ">this youtube video</a>.</p>
+
+<p><img src="/assets/img/oled-lolin-soldered.jpeg" alt="Tiny OLED" /></p>
+
+<p>The other thing that arrived is a 0.91” I2C OLED display.  Using SSD1306 driver, this display can be accessed using two-wire I2C.  I was quite dissapointed by the size (i know, i dont read what i bought), but surprisingly the display was clear and have a good contrast since every pixel has its own light.  Maybe next time, i should buy a bigger size.</p>
+
+<h2 id="wiring-them-together">Wiring them together</h2>
+
+<p>At first i was about to connect them together using enameled copper wire.  But since i can’t find my mother’s wire wrapping pliers, i temporarely solder them using supplied pinheader.  And since i can’t bend the pinhead, i need to get creative and connect the display to GPIO pins and drive them later to supply the power.
+This is my setup:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">OLED</th>
+      <th style="text-align: center">lolin32</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">SDA</td>
+      <td style="text-align: center">GPIO18</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SCK</td>
+      <td style="text-align: center">GPIO23</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">VCC</td>
+      <td style="text-align: center">GPIO19</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GND</td>
+      <td style="text-align: center">GPIO22</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/assets/img/oled-lolin-wiring.jpg" alt="Wiring OLED and LoLin32 (creatively)" /></p>
+
+<p>With this setup, i need to declare custom I2C pin and manually drive the GPIOs to supply vcc and gnd.</p>
+
+<h2 id="testing-with-arduino-ide">Testing with Arduino IDE</h2>
+
+<p>I use Arduino IDE and Adafruit SSD1306 Library to test this setup.  Since i already have ESP32 Platforms in Arduino IDE, i just need to select “WEMOS LOLIN 32” in my board manager to set this up. Another parameter to set is “Upload Speed:460800”.  You can go lower speed if the upload failed.
+Lets try the example from the library.  For this OLED display i used the “ssd1306_128x32_i2c” example.  For this setup i change the default i2c pin using <code class="highlighter-rouge">Wire.begin(sda,scl)</code> and also turn the GPIO to drive the OLED.  I add these code at the beginning of the <code class="highlighter-rouge">setup()</code> function</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">23</span><span class="p">);</span>  <span class="c1">//tell the wire lib to use custom pins</span>
+
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>  <span class="c1">//this pin will be our VCC</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>  <span class="c1">//this pin will be our GND</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>   <span class="c1">//turn this pin to VCC</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>     <span class="c1">//turn this pin to GND to drive the OLED</span>
+</code></pre></div></div>
+
+:ET

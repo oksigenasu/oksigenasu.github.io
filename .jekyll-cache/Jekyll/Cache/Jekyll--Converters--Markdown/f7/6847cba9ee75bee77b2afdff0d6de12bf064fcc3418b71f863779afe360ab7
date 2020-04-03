@@ -1,0 +1,67 @@
+I"t<p>##Finally its arrived!</p>
+
+<p>and without further ado, lets open them.</p>
+
+<p><img src="/assets/img/chargerled.jpeg" alt="cloned LoLin32 with red charging led" /></p>
+
+<p>Since lolin32 was retired, i knew the board that i got was a clone.  The downside from a clone is that sometimes its charging IC was bad and need replacement.  You can spot it when the charging led is blinking even though there were no battery attached. The prochedure to replace the IC can be followed  in <a href="https://www.youtube.com/watch?v=a9f9vHjQSfQ">this youtube video</a>.</p>
+
+<p><img src="/assets/img/oled-lolin-soldered.jpeg" alt="Tiny OLED" /></p>
+
+<p>The other thing that arrived is a 0.91” I2C OLED display.  Using SSD1306 driver, this display can be accessed using two-wire I2C.  I was quite dissapointed by the size (i know, i dont read what i bought), but surprisingly the display was clear and have a good contrast since every pixel has its own light.  Maybe next time, i should buy a bigger size.</p>
+
+<h2 id="wiring-them-together">Wiring them together</h2>
+
+<p>At first i was about to connect them together using enameled copper wire.  But since i can’t find my mother’s wire wrapping pliers, i temporarely solder them using supplied pinheader.  And since i can’t bend the pinhead, i need to get creative and connect the display to GPIO pins and drive them later to supply the power.
+This is my setup:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">OLED</th>
+      <th> </th>
+      <th style="text-align: center">lolin32</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">SDA</td>
+      <td>—–&gt;</td>
+      <td style="text-align: center">GPIO18</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SCK</td>
+      <td>—–&gt;</td>
+      <td style="text-align: center">GPIO23</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">VCC</td>
+      <td>—–&gt;</td>
+      <td style="text-align: center">GPIO19</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GND</td>
+      <td>—–&gt;</td>
+      <td style="text-align: center">GPIO22</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/assets/img/oled-lolin-wiring.jpg" alt="Wiring OLED and LoLin32 (creatively)" /></p>
+
+<p>With this setup, i need to declare custom I2C pin and manually drive the GPIOs to supply vcc and gnd.</p>
+
+<h2 id="testing-with-arduino-ide">Testing with Arduino IDE</h2>
+
+<p>I use Arduino IDE and Adafruit SSD1306 Library to test this setup.  Since i already have ESP32 Platforms in Arduino IDE, i just need to select “WEMOS LOLIN 32” in my board manager to set this up. Another parameter to set is “Upload Speed:460800”.  You can go lower speed if the upload failed.
+Lets try the example from the library.  For this OLED display i used the “ssd1306_128x32_i2c” example.  For this setup i change the default i2c pin using <code class="highlighter-rouge">Wire.begin(sda,scl)</code> and also turn the GPIO to drive the OLED.  I add these code at the beginning of the <code class="highlighter-rouge">setup()</code> function</p>
+
+<pre><code class="language-arduino">  Wire.begin(18,23);  //tell the wire lib to use custom pins
+
+  pinMode(19, OUTPUT);  //this pin will be our VCC
+  pinMode(22, OUTPUT);  //this pin will be our GND
+  digitalWrite(19, HIGH);   //turn this pin to VCC
+  digitalWrite(22,LOW);     //turn this pin to GND to drive the OLED
+</code></pre>
+
+:ET
