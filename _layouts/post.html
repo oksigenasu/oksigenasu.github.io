@@ -18,6 +18,8 @@
 
         <!-- Configure Disqus -->
       {%- if site.texture.disqus_shortname -%}
+        {% if page.comments != false and jekyll.environment == "production" %}
+
         <div id="disqus_thread" style="margin-top:25px"></div>
         <script>
           var disqus_config = function () {
@@ -32,6 +34,7 @@
           })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        {%- endif -%}
       {%- endif -%}
     </div>
   </main>

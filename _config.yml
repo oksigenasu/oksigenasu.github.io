@@ -20,7 +20,7 @@ texture:
   style: black
   showNav: false
   showPicker: true
-
+  disqus_shortname: oksigenasu
   # generate social links in footer
   social_links:
     twitter: notsigenasu
@@ -33,6 +33,11 @@ texture:
 # this and add the path to the pages in order as they should show up
 #header_pages:
 # - about.md
+# Disqus Comments
+  
+# Leave shortname blank to disable comments site-wide.
+# Disable comments for any post by adding `comments: false` to that post's YAML Front Matter.
+
 
 # Build settings
 # theme: texture
