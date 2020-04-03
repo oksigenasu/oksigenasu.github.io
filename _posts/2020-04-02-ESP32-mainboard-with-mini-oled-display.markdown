@@ -4,6 +4,7 @@ title:  "ESP32 mainboard with mini oled display"
 description: minimum ESP32 system for developing and debugging.
 date:   2020-04-02 21:03:36 +000
 categories: ESP32 Hardware Arduino
+comments: true
 ---
 i always fascinated by how Espressif can cram all the stuffs inside an SoC.  And ESP32 is a hell of a fine chip to play with.  it got WiFi and bluetooth and many other feature ready to explore.
 
