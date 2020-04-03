@@ -56,6 +56,7 @@ after uploading and running, the OLED display show the example demo with blazing
 ## Make custom image
 
 to make custom image, i use this [online converter](https://javl.github.io/image2cpp/) to convert and generate the code for the library.
+![its so bright](/assets/img/oled-its-bright.jpeg)
 
 next, i will try to make a WiFi NTP Clock with custom display animation.
 until next time!
