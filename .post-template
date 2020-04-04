@@ -1,0 +1,7 @@
+---
+layout: post
+title:  "Some title"
+description: descripttion of the post
+categories: category1 category2
+comments: true
+---
